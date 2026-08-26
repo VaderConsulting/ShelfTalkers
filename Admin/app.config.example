@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+    <configSections>
+        <sectionGroup name="userSettings" type="System.Configuration.UserSettingsGroup, System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" >
+            <section name="Admin.Properties.Settings" type="System.Configuration.ClientSettingsSection, System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" allowExeDefinition="MachineToLocalUser" requirePermission="false" />
+        </sectionGroup>
+    </configSections>
+    <userSettings>
+        <Admin.Properties.Settings>
+            <setting name="Connection" serializeAs="String">
+                <value>Data Source=tcp:sql.example.com;Initial Catalog=example;User ID=example_user;Password=REDACTED;</value>
+            </setting>
+            <setting name="Query" serializeAs="String">
+                <value>SELECT DISTINCT p.UPI, 
+                ISNULL(p.Name, '') AS Name, 
+                ISNULL(b.Name, '') AS Brand, 
+                ISNULL(p.Price, 0.0) AS Price, 
+                ISNULL(p.RecommendedPrice, 0.0) AS RecommendedPrice, 
+                CASE  
+                    WHEN CAST (pc2.EndDate AS date) &lt; GETDATE() THEN CAST(0.0 As Decimal)
+                    ELSE ISNULL(pc2.Price, CAST(0.0 As Decimal))
+                END AS CatalogPrice, 
+                ISNULL(pc2.EndDate,'') AS CatEndDate, 
+                ISNULL(c.Name, '') AS ParentCategory, 
+                ISNULL(i.Name, '') AS ActiveIngredient, 
+                ISNULL(p.ShelfTalker, 0) AS ShelfTalker
+FROM            Product AS p 
+LEFT OUTER JOIN Brand AS b ON p.BrandID = b.ID 
+LEFT OUTER JOIN ProductCategory AS pc ON p.ID = pc.ProductID 
+LEFT OUTER JOIN Category AS c ON c.ID = pc.CategoryID 
+LEFT OUTER JOIN Ingredient AS i ON p.IngredientID = i.ID 
+LEFT OUTER JOIN ProductCatalog AS pc2 ON pc2.ProductID = p.ID 
+LEFT OUTER JOIN Catalog AS c2 ON c2.RPMID = pc2.CatalogID 
+group by p.UPI, p.Name, b.name, p.Price, p.RecommendedPrice, pc2.Price, pc2.EndDate, c.Name, i.name, p.ShelfTalker, c2.RPMID
+HAVING c2.RPMID = MAX(c2.RPMID) OR c2.RPMID IS NULL 
+ORDER BY p.UPI</value>
+            </setting>
+            <setting name="Output" serializeAs="String">
+                <value>Products.xml</value>
+            </setting>
+            <setting name="FTPLocation" serializeAs="String">
+                <value>Data/Shelftalkers</value>
+            </setting>
+            <setting name="FTPUsername" serializeAs="String">
+                <value>user|example</value>
+            </setting>
+            <setting name="FTPPassword" serializeAs="String">
+                <value>REDACTED</value>
+            </setting>
+            <setting name="FTPHost" serializeAs="String">
+                <value>ftp.example.com</value>
+            </setting>
+            <setting name="LocalFolder" serializeAs="String">
+                <value>D:\</value>
+            </setting>
+        </Admin.Properties.Settings>
+    </userSettings>
+</configuration>

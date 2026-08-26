@@ -1,0 +1,24 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="LabelMaker.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="Store" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="DataPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ftp://ftp.example.com/Data/Shelftalkers/Products.xml</Value>
+    </Setting>
+    <Setting Name="FTPUsername" Type="System.String" Scope="User">
+      <Value Profile="(Default)">user|example</Value>
+    </Setting>
+    <Setting Name="FTPPassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)">REDACTED</Value>
+    </Setting>
+    <Setting Name="TempDataPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="DefaultDataPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">ftp://ftp.example.com/Data/Shelftalkers/Products.xml</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

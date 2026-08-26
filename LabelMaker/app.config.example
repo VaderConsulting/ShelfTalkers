@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<configuration>
+    <configSections>
+        <sectionGroup name="userSettings" type="System.Configuration.UserSettingsGroup, System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+            <section name="LabelMaker.Properties.Settings" type="System.Configuration.ClientSettingsSection, System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" allowExeDefinition="MachineToLocalUser" requirePermission="false"/>
+        </sectionGroup>
+        <sectionGroup name="applicationSettings" type="System.Configuration.ApplicationSettingsGroup, System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" >
+            <section name="LabelMaker.Properties.Settings" type="System.Configuration.ClientSettingsSection, System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+        </sectionGroup>
+    </configSections>
+    <userSettings>
+        <LabelMaker.Properties.Settings>
+            <setting name="Store" serializeAs="String">
+                <value />
+            </setting>
+            <setting name="DataPath" serializeAs="String">
+                <value>ftp://ftp.example.com/Data/Shelftalkers/Products.xml</value>
+            </setting>
+            <setting name="FTPUsername" serializeAs="String">
+                <value>user|example</value>
+            </setting>
+            <setting name="FTPPassword" serializeAs="String">
+                <value>REDACTED</value>
+            </setting>
+            <setting name="TempDataPath" serializeAs="String">
+                <value />
+            </setting>
+        </LabelMaker.Properties.Settings>
+    </userSettings>
+<startup><supportedRuntime version="v2.0.50727"/></startup><applicationSettings>
+        <LabelMaker.Properties.Settings>
+            <setting name="DefaultDataPath" serializeAs="String">
+                <value>ftp://ftp.example.com/Data/Shelftalkers/Products.xml</value>
+            </setting>
+        </LabelMaker.Properties.Settings>
+    </applicationSettings>
+</configuration>

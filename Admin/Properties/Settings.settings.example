@@ -1,0 +1,52 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Admin.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="Connection" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Data Source=tcp:sql.example.com;Initial Catalog=example;User ID=example_user;Password=REDACTED;</Value>
+    </Setting>
+    <Setting Name="Query" Type="System.String" Scope="User">
+      <Value Profile="(Default)">SELECT DISTINCT p.UPI, 
+                ISNULL(p.Name, '') AS Name, 
+                ISNULL(b.Name, '') AS Brand, 
+                ISNULL(p.Price, 0.0) AS Price, 
+                ISNULL(p.RecommendedPrice, 0.0) AS RecommendedPrice, 
+                CASE  
+                    WHEN CAST (pc2.EndDate AS date) &lt; GETDATE() THEN CAST(0.0 As Decimal)
+                    ELSE ISNULL(pc2.Price, CAST(0.0 As Decimal))
+                END AS CatalogPrice, 
+                ISNULL(pc2.EndDate,'') AS CatEndDate, 
+                ISNULL(c.Name, '') AS ParentCategory, 
+                ISNULL(i.Name, '') AS ActiveIngredient, 
+                ISNULL(p.ShelfTalker, 0) AS ShelfTalker
+FROM            Product AS p 
+LEFT OUTER JOIN Brand AS b ON p.BrandID = b.ID 
+LEFT OUTER JOIN ProductCategory AS pc ON p.ID = pc.ProductID 
+LEFT OUTER JOIN Category AS c ON c.ID = pc.CategoryID 
+LEFT OUTER JOIN Ingredient AS i ON p.IngredientID = i.ID 
+LEFT OUTER JOIN ProductCatalog AS pc2 ON pc2.ProductID = p.ID 
+LEFT OUTER JOIN Catalog AS c2 ON c2.RPMID = pc2.CatalogID 
+group by p.UPI, p.Name, b.name, p.Price, p.RecommendedPrice, pc2.Price, pc2.EndDate, c.Name, i.name, p.ShelfTalker, c2.RPMID
+HAVING c2.RPMID = MAX(c2.RPMID) OR c2.RPMID IS NULL 
+ORDER BY p.UPI</Value>
+    </Setting>
+    <Setting Name="Output" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Products.xml</Value>
+    </Setting>
+    <Setting Name="FTPLocation" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Data/Shelftalkers</Value>
+    </Setting>
+    <Setting Name="FTPUsername" Type="System.String" Scope="User">
+      <Value Profile="(Default)">user|example</Value>
+    </Setting>
+    <Setting Name="FTPPassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)">REDACTED</Value>
+    </Setting>
+    <Setting Name="FTPHost" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ftp.example.com</Value>
+    </Setting>
+    <Setting Name="LocalFolder" Type="System.String" Scope="User">
+      <Value Profile="(Default)">D:\</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

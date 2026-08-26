@@ -1,0 +1,49 @@
+# Build output
+bin/
+obj/
+
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Legacy source-control bindings
+*.scc
+*.vssscc
+*.vspscc
+
+# NuGet
+packages/
+
+# Secrets / credentials (never upload)
+*.pfx
+*.p12
+*.pem
+*.key
+.env
+**/appsettings.*.local.json
+
+# Logs and temp
+*.log
+*.tmp
+*.bak
+
+# Import skips
+_UpgradeReport_Files/
+Backup/
+UpgradeLog.htm
+UpgradeLog.XML
+
+# InstallShield DiskImages binaries
+Setup/**/DiskImages/
+AdminSetup/**/DiskImages/
+
+# Live SQL/FTP credentials (see *.example)
+Admin/app.config
+Admin/App.config
+Admin/Properties/Settings.settings
+LabelMaker/app.config
+LabelMaker/App.config
+LabelMaker/Properties/Settings.settings
