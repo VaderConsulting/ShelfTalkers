@@ -25,6 +25,10 @@ The solution also includes InstallShield projects `Setup/Setup.isproj` and `Admi
 
 Open `ShelfTalkers.sln` in Visual Studio. Copy each `*.example` file to the matching `app.config` or `Settings.settings` name and fill in local SQL/FTP values before running Admin or LabelMaker.
 
+## Requirements
+
+- Visual Studio 2012, .NET Framework 3.5
+
 ## Attribution and provenance
 
 - **Assembly company:** Vader Consulting
