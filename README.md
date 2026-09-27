@@ -31,6 +31,8 @@ Open `ShelfTalkers.sln` in Visual Studio. Copy each `*.example` file to the matc
 
 ## Attribution and provenance
 
+Working copy from my Historical Dev folder.
+
 - **Assembly company:** Vader Consulting
 - **Assembly copyright:** Copyright © 2013, Copyright © Vader Consulting 2013
 
